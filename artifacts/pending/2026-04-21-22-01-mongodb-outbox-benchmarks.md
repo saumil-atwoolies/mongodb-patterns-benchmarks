@@ -64,7 +64,7 @@ dotnet test
 | 10 | Implement benchmark statistics display | `done` | `Add formatted benchmark statistics output` |
 | 11 | Configure IOPS simulation via Docker blkio_config | `done` | `Add configurable IOPS simulation on MongoDB container` |
 | 12 | Docker-integrated build, test, and benchmark pipeline | `done` | `Add multi-stage Dockerfile for build, test, and benchmark execution` |
-| 13 | Create README.md | `pending` | `Add README with quick-start, architecture, and configuration reference` |
+| 13 | Create README.md | `done` | `Add README with quick-start, architecture, and configuration reference` |
 
 ## Task Details
 
@@ -444,7 +444,7 @@ dotnet test
 - No automated tests. Manual review for completeness.
 
 **Definition of done:**
-- [ ] `README.md` exists at repository root with all specified sections.
-- [ ] `dotnet build && dotnet test` still passes.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `README.md` exists at repository root with all specified sections.
+- [x] `dotnet build && dotnet test` still passes.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
