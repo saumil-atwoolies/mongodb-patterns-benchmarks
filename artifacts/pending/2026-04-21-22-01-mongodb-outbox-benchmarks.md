@@ -58,7 +58,7 @@ dotnet test
 | 4 | Implement OrderAggregate with version tracking | `done` | `Add OrderAggregate domain model with version tracking` |
 | 5 | Implement domain events with version correlation | `done` | `Add domain events with aggregate version correlation` |
 | 6 | Implement Case 1 two-phase commit outbox pattern | `done` | `Add two-phase commit outbox pattern with MongoDB transactions` |
-| 7 | Implement Case 2 embedded events outbox with optimistic concurrency | `pending` | `Add embedded events outbox pattern with optimistic concurrency` |
+| 7 | Implement Case 2 embedded events outbox with optimistic concurrency | `done` | `Add embedded events outbox pattern with optimistic concurrency` |
 | 8 | Implement change stream monitoring | `pending` | `Add change stream monitoring with event counting` |
 | 9 | Implement extensible benchmark harness with configurable load | `pending` | `Add extensible benchmark harness with configurable load parameters` |
 | 10 | Implement benchmark statistics display | `pending` | `Add formatted benchmark statistics output` |
@@ -267,13 +267,13 @@ dotnet test
 - `EmbeddedEventsOrderRepositoryTests.UpdateAsync_ThrowsConcurrencyException_OnVersionMismatch` — create, tamper version, attempt update, assert `ConcurrencyException`.
 
 **Definition of done:**
-- [ ] `ConcurrencyException` created in Domain.
-- [ ] `EmbeddedOrderDocument` and `EmbeddedEventsOrderRepository` created in Infrastructure.
-- [ ] All listed tests written and passing (integration tests require MongoDB).
-- [ ] `dotnet build && dotnet test` passes.
-- [ ] Build succeeds with no warnings on new code.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `ConcurrencyException` created in Domain.
+- [x] `EmbeddedOrderDocument` and `EmbeddedEventsOrderRepository` created in Infrastructure.
+- [x] All listed tests written and passing (integration tests require MongoDB).
+- [x] `dotnet build && dotnet test` passes.
+- [x] Build succeeds with no warnings on new code.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
