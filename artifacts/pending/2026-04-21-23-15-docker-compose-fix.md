@@ -58,7 +58,7 @@ dotnet test
 | 1 | Fix MongoDB Docker configuration and replica set initialization | `done` | `Fix MongoDB replica set startup by removing auth and using init container` |
 | 2 | Update connection strings across codebase | `done` | `Update connection strings to match auth-free MongoDB configuration` |
 | 3 | Validate Docker Compose end-to-end benchmark output | `done` | `Validate docker compose up produces benchmark results` |
-| 4 | Validate integration tests against live MongoDB | `pending` | `Verify all integration tests pass against live MongoDB replica set` |
+| 4 | Validate integration tests against live MongoDB | `done` | `Verify all integration tests pass against live MongoDB replica set` |
 
 ## Task Details
 
