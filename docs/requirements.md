@@ -40,7 +40,4 @@ batchsize: 1 document
 User should be able to simply follow docker-compose build from scratch up command that should create necessary build (and test cases passing). Then it should execute performance tests and display stats. Performance test configuration,  Start time, end time for both change stream as well as use cases (clear stats separate for each usecase)
 
 ## gitignore
-Create necessary gitignore for technology chosen 
-
-## github copilot workflow setup and slash commands
-Create standard spec-kit kind of slash commands (but don't use spec-kit) for creating requirement validation based on any file provided as requirement input, then create trackable task plan under pending folder from validated requirements and implement-plan which should implement pending plan's pending task iteratively while any task pending or any implementation plan pending. All github copilot interactions should be saved under context folder and resumed next time from last context (save with datetime in name). Developers should be able to handoff work in team and their copilot should be able to understand last things done.
+Create necessary gitignore for technology chosen
