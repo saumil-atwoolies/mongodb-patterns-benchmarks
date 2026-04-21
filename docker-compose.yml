@@ -60,7 +60,7 @@ services:
       mongodb:
         condition: service_healthy
     environment:
-      CONNECTION_STRING: "mongodb://admin:N05%40ssword@mongodb:27017/?replicaSet=rs0&authSource=admin"
+      CONNECTION_STRING: "mongodb://mongodb:27017/?replicaSet=rs0"
       LOAD_SIZE: ${LOAD_SIZE:-1000}
       CONCURRENCY: ${CONCURRENCY:-5}
       BATCH_SIZE: ${BATCH_SIZE:-1}

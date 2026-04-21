@@ -6,7 +6,7 @@ namespace MongoDbPatterns.Infrastructure.Tests;
 
 public abstract class MongoDbIntegrationTestBase : IAsyncLifetime
 {
-    private const string TestConnectionString = "mongodb://admin:N05%40ssword@localhost:27018/?replicaSet=rs0&authSource=admin";
+    private const string TestConnectionString = "mongodb://localhost:27018/?replicaSet=rs0";
     private const string TestDatabaseName = "MongoDbPatternsTests";
 
     private static bool? _mongoAvailable;

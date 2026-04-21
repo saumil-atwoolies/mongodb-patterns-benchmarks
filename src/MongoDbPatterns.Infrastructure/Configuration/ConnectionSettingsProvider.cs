@@ -8,7 +8,7 @@ public sealed class ConnectionSettingsProvider
 
     private static readonly ConnectionSettings DefaultSettings = new()
     {
-        ConnectionString = "mongodb://admin:N05%40ssword@localhost:27018/?replicaSet=rs0&authSource=admin",
+        ConnectionString = "mongodb://localhost:27018/?replicaSet=rs0",
         DatabaseName = "MongoDbPatterns"
     };
 
