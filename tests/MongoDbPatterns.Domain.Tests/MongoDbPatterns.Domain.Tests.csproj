@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MongoDbPatterns.Domain\MongoDbPatterns.Domain.csproj" />
+    <ProjectReference Include="..\..\src\MongoDbPatterns.Benchmarks\MongoDbPatterns.Benchmarks.csproj" />
   </ItemGroup>
 
 </Project>

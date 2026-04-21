@@ -60,7 +60,7 @@ dotnet test
 | 6 | Implement Case 1 two-phase commit outbox pattern | `done` | `Add two-phase commit outbox pattern with MongoDB transactions` |
 | 7 | Implement Case 2 embedded events outbox with optimistic concurrency | `done` | `Add embedded events outbox pattern with optimistic concurrency` |
 | 8 | Implement change stream monitoring | `done` | `Add change stream monitoring with event counting` |
-| 9 | Implement extensible benchmark harness with configurable load | `pending` | `Add extensible benchmark harness with configurable load parameters` |
+| 9 | Implement extensible benchmark harness with configurable load | `done` | `Add extensible benchmark harness with configurable load parameters` |
 | 10 | Implement benchmark statistics display | `pending` | `Add formatted benchmark statistics output` |
 | 11 | Configure IOPS simulation via Docker blkio_config | `pending` | `Add configurable IOPS simulation on MongoDB container` |
 | 12 | Docker-integrated build, test, and benchmark pipeline | `pending` | `Add multi-stage Dockerfile for build, test, and benchmark execution` |
@@ -328,15 +328,15 @@ dotnet test
   - `BenchmarkConfigTests.ParsesEnvironmentVariables` — set env vars, parse, assert overridden values.
 
 **Definition of done:**
-- [ ] `IBenchmarkScenario` interface and both scenario implementations created.
-- [ ] `BenchmarkRunner` discovers and executes scenarios.
-- [ ] `BenchmarkConfig` parses configuration with correct defaults.
-- [ ] `Program.cs` wires everything together.
-- [ ] All listed tests written and passing.
-- [ ] `dotnet build && dotnet test` passes.
-- [ ] Build succeeds with no warnings on new code.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `IBenchmarkScenario` interface and both scenario implementations created.
+- [x] `BenchmarkRunner` discovers and executes scenarios.
+- [x] `BenchmarkConfig` parses configuration with correct defaults.
+- [x] `Program.cs` wires everything together.
+- [x] All listed tests written and passing.
+- [x] `dotnet build && dotnet test` passes.
+- [x] Build succeeds with no warnings on new code.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
