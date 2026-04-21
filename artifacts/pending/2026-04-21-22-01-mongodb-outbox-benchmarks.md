@@ -61,7 +61,7 @@ dotnet test
 | 7 | Implement Case 2 embedded events outbox with optimistic concurrency | `done` | `Add embedded events outbox pattern with optimistic concurrency` |
 | 8 | Implement change stream monitoring | `done` | `Add change stream monitoring with event counting` |
 | 9 | Implement extensible benchmark harness with configurable load | `done` | `Add extensible benchmark harness with configurable load parameters` |
-| 10 | Implement benchmark statistics display | `pending` | `Add formatted benchmark statistics output` |
+| 10 | Implement benchmark statistics display | `done` | `Add formatted benchmark statistics output` |
 | 11 | Configure IOPS simulation via Docker blkio_config | `pending` | `Add configurable IOPS simulation on MongoDB container` |
 | 12 | Docker-integrated build, test, and benchmark pipeline | `pending` | `Add multi-stage Dockerfile for build, test, and benchmark execution` |
 | 13 | Create README.md | `pending` | `Add README with quick-start, architecture, and configuration reference` |
@@ -361,13 +361,13 @@ dotnet test
 - `StatisticsFormatterTests.FormatsChangeStreamStats` — assert output contains change stream event counts.
 
 **Definition of done:**
-- [ ] `ScenarioResult` and `StatisticsFormatter` created.
-- [ ] Formatter integrated into `BenchmarkRunner`.
-- [ ] All listed tests written and passing.
-- [ ] `dotnet build && dotnet test` passes.
-- [ ] Build succeeds with no warnings on new code.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `ScenarioResult` and `StatisticsFormatter` created.
+- [x] Formatter integrated into `BenchmarkRunner`.
+- [x] All listed tests written and passing.
+- [x] `dotnet build && dotnet test` passes.
+- [x] Build succeeds with no warnings on new code.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 

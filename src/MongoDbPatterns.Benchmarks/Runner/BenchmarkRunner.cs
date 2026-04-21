@@ -24,6 +24,8 @@ public sealed class BenchmarkRunner
             results.Add(result);
         }
 
+        Console.WriteLine(StatisticsFormatter.Format(config, results));
+
         return results;
     }
 }
