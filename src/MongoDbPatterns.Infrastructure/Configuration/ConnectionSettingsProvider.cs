@@ -31,6 +31,16 @@ public sealed class ConnectionSettingsProvider
 
     public ConnectionSettings GetSettings()
     {
+        var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+        if (!string.IsNullOrWhiteSpace(envConnectionString))
+        {
+            return new ConnectionSettings
+            {
+                ConnectionString = envConnectionString,
+                DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME") ?? DefaultSettings.DatabaseName
+            };
+        }
+
         if (!File.Exists(_filePath))
         {
             var json = JsonSerializer.Serialize(DefaultSettings, JsonOptions);

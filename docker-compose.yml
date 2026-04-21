@@ -34,5 +34,19 @@ services:
       retries: 10
       start_period: 30s
 
+  benchmarks:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongodb-benchmarks
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      CONNECTION_STRING: "mongodb://admin:N05%40ssword@mongodb:27017/?replicaSet=rs0&authSource=admin"
+      LOAD_SIZE: ${LOAD_SIZE:-1000}
+      CONCURRENCY: ${CONCURRENCY:-5}
+      BATCH_SIZE: ${BATCH_SIZE:-1}
+
 volumes:
   mongodb-data:

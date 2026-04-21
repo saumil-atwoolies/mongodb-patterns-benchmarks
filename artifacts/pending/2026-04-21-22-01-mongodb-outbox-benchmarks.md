@@ -63,7 +63,7 @@ dotnet test
 | 9 | Implement extensible benchmark harness with configurable load | `done` | `Add extensible benchmark harness with configurable load parameters` |
 | 10 | Implement benchmark statistics display | `done` | `Add formatted benchmark statistics output` |
 | 11 | Configure IOPS simulation via Docker blkio_config | `done` | `Add configurable IOPS simulation on MongoDB container` |
-| 12 | Docker-integrated build, test, and benchmark pipeline | `pending` | `Add multi-stage Dockerfile for build, test, and benchmark execution` |
+| 12 | Docker-integrated build, test, and benchmark pipeline | `done` | `Add multi-stage Dockerfile for build, test, and benchmark execution` |
 | 13 | Create README.md | `pending` | `Add README with quick-start, architecture, and configuration reference` |
 
 ## Task Details
@@ -415,12 +415,12 @@ dotnet test
 - No new .NET tests. Validation: `docker compose build` succeeds and `docker compose up` produces benchmark output.
 
 **Definition of done:**
-- [ ] `Dockerfile` created with build, test, publish, and runtime stages.
-- [ ] `docker-compose.yml` updated with `benchmarks` service.
-- [ ] `docker compose build` succeeds (runs `dotnet test` as part of build).
-- [ ] `dotnet build && dotnet test` still passes locally.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `Dockerfile` created with build, test, publish, and runtime stages.
+- [x] `docker-compose.yml` updated with `benchmarks` service.
+- [x] `docker compose build` succeeds (runs `dotnet test` as part of build).
+- [x] `dotnet build && dotnet test` still passes locally.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
