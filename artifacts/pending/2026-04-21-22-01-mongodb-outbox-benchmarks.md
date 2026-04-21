@@ -54,7 +54,7 @@ dotnet test
 |---|------|--------|----------------|
 | 1 | Create .gitignore and scaffold .NET solution | `done` | `Scaffold .NET 10 solution with domain, infrastructure, benchmarks, and test projects` |
 | 2 | Create Docker Compose with MongoDB replica set | `done` | `Add Docker Compose with single-node MongoDB replica set` |
-| 3 | Implement connection settings configuration | `pending` | `Add connection settings model with auto-creation of local config file` |
+| 3 | Implement connection settings configuration | `done` | `Add connection settings model with auto-creation of local config file` |
 | 4 | Implement OrderAggregate with version tracking | `pending` | `Add OrderAggregate domain model with version tracking` |
 | 5 | Implement domain events with version correlation | `pending` | `Add domain events with aggregate version correlation` |
 | 6 | Implement Case 1 two-phase commit outbox pattern | `pending` | `Add two-phase commit outbox pattern with MongoDB transactions` |
@@ -144,13 +144,13 @@ dotnet test
 - `ConnectionSettingsProviderTests.DoesNotOverwriteExistingFile` — pre-create file, call provider, verify file unchanged.
 
 **Definition of done:**
-- [ ] `ConnectionSettings` model created.
-- [ ] `ConnectionSettingsProvider` creates default file when missing and reads existing files.
-- [ ] All listed tests written and passing.
-- [ ] `dotnet build && dotnet test` passes.
-- [ ] Build succeeds with no warnings on new code.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `ConnectionSettings` model created.
+- [x] `ConnectionSettingsProvider` creates default file when missing and reads existing files.
+- [x] All listed tests written and passing.
+- [x] `dotnet build && dotnet test` passes.
+- [x] Build succeeds with no warnings on new code.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
