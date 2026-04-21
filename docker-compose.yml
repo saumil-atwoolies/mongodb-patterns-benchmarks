@@ -11,6 +11,20 @@ services:
     volumes:
       - mongodb-data:/data/db
       - ./scripts/mongo-init-replica.sh:/docker-entrypoint-initdb.d/init-replica.sh:ro
+    # IOPS simulation via blkio_config (Linux cgroups v1 only).
+    # On Docker Desktop (macOS/Windows WSL2), blkio limits are silently ignored — compose still starts.
+    # To find your block device path:
+    #   Linux:   lsblk → typically /dev/sda
+    #   WSL2:    /dev/sda (virtual disk)
+    #   macOS:   not applicable (blkio not supported)
+    # Override defaults: IOPS_LIMIT=3000 BLKIO_DEVICE=/dev/sda docker compose up
+    blkio_config:
+      device_read_iops:
+        - path: ${BLKIO_DEVICE:-/dev/sda}
+          rate: ${IOPS_LIMIT:-3000}
+      device_write_iops:
+        - path: ${BLKIO_DEVICE:-/dev/sda}
+          rate: ${IOPS_LIMIT:-3000}
     healthcheck:
       test: >
         mongosh --quiet --username admin --password 'N05@ssword' --authenticationDatabase admin

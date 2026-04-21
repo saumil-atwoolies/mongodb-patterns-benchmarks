@@ -62,7 +62,7 @@ dotnet test
 | 8 | Implement change stream monitoring | `done` | `Add change stream monitoring with event counting` |
 | 9 | Implement extensible benchmark harness with configurable load | `done` | `Add extensible benchmark harness with configurable load parameters` |
 | 10 | Implement benchmark statistics display | `done` | `Add formatted benchmark statistics output` |
-| 11 | Configure IOPS simulation via Docker blkio_config | `pending` | `Add configurable IOPS simulation on MongoDB container` |
+| 11 | Configure IOPS simulation via Docker blkio_config | `done` | `Add configurable IOPS simulation on MongoDB container` |
 | 12 | Docker-integrated build, test, and benchmark pipeline | `pending` | `Add multi-stage Dockerfile for build, test, and benchmark execution` |
 | 13 | Create README.md | `pending` | `Add README with quick-start, architecture, and configuration reference` |
 
@@ -386,11 +386,11 @@ dotnet test
 - No automated tests (Docker Compose configuration validated in Task 12 pipeline).
 
 **Definition of done:**
-- [ ] `docker-compose.yml` updated with `blkio_config` on `mongodb` service.
-- [ ] IOPS limit defaults to 3000 and is configurable via environment variable.
-- [ ] `dotnet build && dotnet test` still passes (no .NET changes).
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `docker-compose.yml` updated with `blkio_config` on `mongodb` service.
+- [x] IOPS limit defaults to 3000 and is configurable via environment variable.
+- [x] `dotnet build && dotnet test` still passes (no .NET changes).
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
