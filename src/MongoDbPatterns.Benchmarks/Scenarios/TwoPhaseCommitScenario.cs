@@ -1,4 +1,5 @@
 using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDbPatterns.Benchmarks.Configuration;
 using MongoDbPatterns.Benchmarks.Results;
 using MongoDbPatterns.Domain.Aggregates;
@@ -20,6 +21,14 @@ public sealed class TwoPhaseCommitScenario : IBenchmarkScenario
 
     public async Task<ScenarioResult> RunAsync(BenchmarkConfig config, CancellationToken ct)
     {
+        // Pre-create collections to avoid concurrent implicit creation conflicts in transactions
+        var db = _context.Database;
+        var existingNames = await (await db.ListCollectionNamesAsync(cancellationToken: ct)).ToListAsync(cancellationToken: ct);
+        if (!existingNames.Contains(TwoPhaseCommitOrderRepository.OrdersCollectionName))
+            await db.CreateCollectionAsync(TwoPhaseCommitOrderRepository.OrdersCollectionName, cancellationToken: ct);
+        if (!existingNames.Contains(TwoPhaseCommitOrderRepository.OrderEventsCollectionName))
+            await db.CreateCollectionAsync(TwoPhaseCommitOrderRepository.OrderEventsCollectionName, cancellationToken: ct);
+
         var ordersWatcher = new ChangeStreamWatcher(
             _context.Database.GetCollection<BsonDocument>(TwoPhaseCommitOrderRepository.OrdersCollectionName),
             TwoPhaseCommitOrderRepository.OrdersCollectionName);

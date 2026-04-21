@@ -4,9 +4,10 @@ services:
     container_name: mongodb-patterns
     ports:
       - "27018:27017"
-    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    entrypoint: ["/scripts/mongo-entrypoint.sh"]
     volumes:
       - mongodb-data:/data/db
+      - ./scripts/mongo-entrypoint.sh:/scripts/mongo-entrypoint.sh:ro
     # IOPS simulation via blkio_config (Linux cgroups v1 only).
     # On Docker Desktop (macOS/Windows WSL2), blkio limits are silently ignored — compose still starts.
     # To find your block device path:
@@ -29,27 +30,6 @@ services:
       timeout: 5s
       retries: 10
       start_period: 30s
-
-  mongodb-init:
-    image: mongo:7
-    container_name: mongodb-init
-    depends_on:
-      mongodb:
-        condition: service_started
-    restart: "no"
-    entrypoint: >
-      mongosh --host mongodb:27017 --quiet --eval "
-        while (true) {
-          try { db.adminCommand('ping'); break; } catch(e) { sleep(1000); }
-        }
-        try {
-          var status = rs.status();
-          if (status.ok) { print('Replica set already initialized'); quit(0); }
-        } catch(e) {
-          rs.initiate({ _id: 'rs0', members: [{ _id: 0, host: 'mongodb:27017' }] });
-          print('Replica set rs0 initiated');
-        }
-      "
 
   benchmarks:
     build:

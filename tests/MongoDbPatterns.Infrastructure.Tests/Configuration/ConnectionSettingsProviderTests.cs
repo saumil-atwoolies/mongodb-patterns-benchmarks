@@ -29,7 +29,7 @@ public class ConnectionSettingsProviderTests : IDisposable
         var settings = provider.GetSettings();
 
         Assert.True(File.Exists(_filePath));
-        Assert.Equal("mongodb://localhost:27018/?replicaSet=rs0", settings.ConnectionString);
+        Assert.Equal("mongodb://localhost:27018/?directConnection=true", settings.ConnectionString);
         Assert.Equal("MongoDbPatterns", settings.DatabaseName);
     }
 

@@ -41,7 +41,8 @@ public sealed class TwoPhaseCommitOrderRepository : IOrderRepository
         }
         catch
         {
-            await session.AbortTransactionAsync(ct);
+            if (session.IsInTransaction)
+                await session.AbortTransactionAsync(ct);
             throw;
         }
     }
@@ -77,7 +78,8 @@ public sealed class TwoPhaseCommitOrderRepository : IOrderRepository
         }
         catch
         {
-            await session.AbortTransactionAsync(ct);
+            if (session.IsInTransaction)
+                await session.AbortTransactionAsync(ct);
             throw;
         }
     }

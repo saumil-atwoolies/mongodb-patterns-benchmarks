@@ -1,4 +1,5 @@
 using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDbPatterns.Benchmarks.Configuration;
 using MongoDbPatterns.Benchmarks.Results;
 using MongoDbPatterns.Domain.Aggregates;
@@ -20,6 +21,12 @@ public sealed class EmbeddedEventsScenario : IBenchmarkScenario
 
     public async Task<ScenarioResult> RunAsync(BenchmarkConfig config, CancellationToken ct)
     {
+        // Pre-create collection to avoid concurrent implicit creation conflicts
+        var db = _context.Database;
+        var existingNames = await (await db.ListCollectionNamesAsync(cancellationToken: ct)).ToListAsync(cancellationToken: ct);
+        if (!existingNames.Contains(EmbeddedEventsOrderRepository.CollectionName))
+            await db.CreateCollectionAsync(EmbeddedEventsOrderRepository.CollectionName, cancellationToken: ct);
+
         var watcher = new ChangeStreamWatcher(
             _context.Database.GetCollection<BsonDocument>(EmbeddedEventsOrderRepository.CollectionName),
             EmbeddedEventsOrderRepository.CollectionName);
