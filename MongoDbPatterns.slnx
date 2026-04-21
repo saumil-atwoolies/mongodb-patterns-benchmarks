@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MongoDbPatterns.Benchmarks/MongoDbPatterns.Benchmarks.csproj" />
+    <Project Path="src/MongoDbPatterns.Domain/MongoDbPatterns.Domain.csproj" />
+    <Project Path="src/MongoDbPatterns.Infrastructure/MongoDbPatterns.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MongoDbPatterns.Domain.Tests/MongoDbPatterns.Domain.Tests.csproj" />
+    <Project Path="tests/MongoDbPatterns.Infrastructure.Tests/MongoDbPatterns.Infrastructure.Tests.csproj" />
+  </Folder>
+</Solution>

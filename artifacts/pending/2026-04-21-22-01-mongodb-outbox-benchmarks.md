@@ -52,7 +52,7 @@ dotnet test
 
 | # | Task | Status | Commit Message |
 |---|------|--------|----------------|
-| 1 | Create .gitignore and scaffold .NET solution | `pending` | `Scaffold .NET 10 solution with domain, infrastructure, benchmarks, and test projects` |
+| 1 | Create .gitignore and scaffold .NET solution | `done` | `Scaffold .NET 10 solution with domain, infrastructure, benchmarks, and test projects` |
 | 2 | Create Docker Compose with MongoDB replica set | `pending` | `Add Docker Compose with single-node MongoDB replica set` |
 | 3 | Implement connection settings configuration | `pending` | `Add connection settings model with auto-creation of local config file` |
 | 4 | Implement OrderAggregate with version tracking | `pending` | `Add OrderAggregate domain model with version tracking` |
@@ -88,14 +88,14 @@ dotnet test
 - `tests/MongoDbPatterns.Domain.Tests/SolutionStructureTests.cs`: `SolutionBuilds_Successfully` — a trivial passing test asserting `true` (placeholder until domain model exists).
 
 **Definition of done:**
-- [ ] `.gitignore` created with .NET + `*.local` entries.
-- [ ] Solution and all 5 projects created with correct references.
-- [ ] `dotnet build` succeeds with no errors.
-- [ ] `dotnet test` passes with at least one test.
-- [ ] All listed tests written and passing.
-- [ ] Build succeeds with no warnings on new code.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `.gitignore` created with .NET + `*.local` entries.
+- [x] Solution and all 5 projects created with correct references.
+- [x] `dotnet build` succeeds with no errors.
+- [x] `dotnet test` passes with at least one test.
+- [x] All listed tests written and passing.
+- [x] Build succeeds with no warnings on new code.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
