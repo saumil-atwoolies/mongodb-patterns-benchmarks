@@ -53,7 +53,7 @@ dotnet test
 | # | Task | Status | Commit Message |
 |---|------|--------|----------------|
 | 1 | Create .gitignore and scaffold .NET solution | `done` | `Scaffold .NET 10 solution with domain, infrastructure, benchmarks, and test projects` |
-| 2 | Create Docker Compose with MongoDB replica set | `pending` | `Add Docker Compose with single-node MongoDB replica set` |
+| 2 | Create Docker Compose with MongoDB replica set | `done` | `Add Docker Compose with single-node MongoDB replica set` |
 | 3 | Implement connection settings configuration | `pending` | `Add connection settings model with auto-creation of local config file` |
 | 4 | Implement OrderAggregate with version tracking | `pending` | `Add OrderAggregate domain model with version tracking` |
 | 5 | Implement domain events with version correlation | `pending` | `Add domain events with aggregate version correlation` |
@@ -117,12 +117,12 @@ dotnet test
 - No automated tests in this task (Docker Compose is validated by `docker compose build` and manual `docker compose up` in Task 12).
 
 **Definition of done:**
-- [ ] `docker-compose.yml` exists with `mongodb` service on port 27018.
-- [ ] MongoDB starts with `--replSet rs0` and authentication enabled.
-- [ ] Replica set initialization script exists at `scripts/mongo-init-replica.sh`.
-- [ ] `dotnet build && dotnet test` still passes (no .NET changes).
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `docker-compose.yml` exists with `mongodb` service on port 27018.
+- [x] MongoDB starts with `--replSet rs0` and authentication enabled.
+- [x] Replica set initialization script exists at `scripts/mongo-init-replica.sh`.
+- [x] `dotnet build && dotnet test` still passes (no .NET changes).
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
