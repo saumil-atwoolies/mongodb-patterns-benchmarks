@@ -57,7 +57,7 @@ dotnet test
 | 3 | Implement connection settings configuration | `done` | `Add connection settings model with auto-creation of local config file` |
 | 4 | Implement OrderAggregate with version tracking | `done` | `Add OrderAggregate domain model with version tracking` |
 | 5 | Implement domain events with version correlation | `done` | `Add domain events with aggregate version correlation` |
-| 6 | Implement Case 1 two-phase commit outbox pattern | `pending` | `Add two-phase commit outbox pattern with MongoDB transactions` |
+| 6 | Implement Case 1 two-phase commit outbox pattern | `done` | `Add two-phase commit outbox pattern with MongoDB transactions` |
 | 7 | Implement Case 2 embedded events outbox with optimistic concurrency | `pending` | `Add embedded events outbox pattern with optimistic concurrency` |
 | 8 | Implement change stream monitoring | `pending` | `Add change stream monitoring with event counting` |
 | 9 | Implement extensible benchmark harness with configurable load | `pending` | `Add extensible benchmark harness with configurable load parameters` |
@@ -238,13 +238,13 @@ dotnet test
 - `TwoPhaseCommitOrderRepositoryTests.GetByIdAsync_ReturnsPersistedOrder` — create, retrieve, assert match.
 
 **Definition of done:**
-- [ ] `IOrderRepository` interface created in Domain.
-- [ ] `MongoDbContext`, document models, and `TwoPhaseCommitOrderRepository` created in Infrastructure.
-- [ ] All listed tests written and passing (integration tests require MongoDB).
-- [ ] `dotnet build && dotnet test` passes.
-- [ ] Build succeeds with no warnings on new code.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `IOrderRepository` interface created in Domain.
+- [x] `MongoDbContext`, document models, and `TwoPhaseCommitOrderRepository` created in Infrastructure.
+- [x] All listed tests written and passing (integration tests require MongoDB).
+- [x] `dotnet build && dotnet test` passes.
+- [x] Build succeeds with no warnings on new code.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 

@@ -38,4 +38,14 @@ public class OrderAggregate
     {
         _domainEvents.Clear();
     }
+
+    internal static OrderAggregate Reconstitute(Guid id, int version, OrderStatus status)
+    {
+        return new OrderAggregate
+        {
+            Id = id,
+            Version = version,
+            Status = status
+        };
+    }
 }
