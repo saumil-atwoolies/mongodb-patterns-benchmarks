@@ -59,7 +59,7 @@ dotnet test
 | 5 | Implement domain events with version correlation | `done` | `Add domain events with aggregate version correlation` |
 | 6 | Implement Case 1 two-phase commit outbox pattern | `done` | `Add two-phase commit outbox pattern with MongoDB transactions` |
 | 7 | Implement Case 2 embedded events outbox with optimistic concurrency | `done` | `Add embedded events outbox pattern with optimistic concurrency` |
-| 8 | Implement change stream monitoring | `pending` | `Add change stream monitoring with event counting` |
+| 8 | Implement change stream monitoring | `done` | `Add change stream monitoring with event counting` |
 | 9 | Implement extensible benchmark harness with configurable load | `pending` | `Add extensible benchmark harness with configurable load parameters` |
 | 10 | Implement benchmark statistics display | `pending` | `Add formatted benchmark statistics output` |
 | 11 | Configure IOPS simulation via Docker blkio_config | `pending` | `Add configurable IOPS simulation on MongoDB container` |
@@ -298,12 +298,12 @@ dotnet test
 - `ChangeStreamWatcherTests.StopAsync_ReturnsAccumulatedCount` — insert N documents, stop, assert count >= N.
 
 **Definition of done:**
-- [ ] `ChangeStreamWatcher` and `ChangeStreamResult` created.
-- [ ] All listed tests written and passing (integration tests require MongoDB with replica set).
-- [ ] `dotnet build && dotnet test` passes.
-- [ ] Build succeeds with no warnings on new code.
-- [ ] Task row in Progress Tracker updated to `done`.
-- [ ] Changes committed with the exact commit message from the tracker.
+- [x] `ChangeStreamWatcher` and `ChangeStreamResult` created.
+- [x] All listed tests written and passing (integration tests require MongoDB with replica set).
+- [x] `dotnet build && dotnet test` passes.
+- [x] Build succeeds with no warnings on new code.
+- [x] Task row in Progress Tracker updated to `done`.
+- [x] Changes committed with the exact commit message from the tracker.
 
 ---
 
