@@ -1,0 +1,52 @@
+╔══════════════════════════════════════════════════════════════╗
+║           MongoDB Patterns & Benchmarks — Results           ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌─ Infrastructure ────────────────────────────────────────────┐
+│  MongoDB Image:      mongo:7                                │
+│  MongoDB RAM:        2g                                     │
+│  MongoDB vCPUs:      2.0                                    │
+│  MongoDB IOPS Limit: 3000                                   │
+│  Replica Set:        rs0 (single-node)                      │
+│  Bench RAM:          1g                                     │
+│  Bench vCPUs:        2.0                                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Configuration ─────────────────────────────────────────────┐
+│  Load Size:           50                                │
+│  Concurrency:          2                                │
+│  Batch Size:           1                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 1: Two-Phase Commit Outbox ──────────────────────────┐
+│  Start Time:       2026-04-22 01:00:35.426 UTC           │
+│  End Time:         2026-04-22 01:00:35.889 UTC           │
+│  Duration:              0.463 seconds                  │
+│  Total Operations:        100                          │
+│  Throughput:           215.93 ops/sec                  │
+│                                                             │
+│  Change Streams:                                             │
+│    [Orders]
+│      Start:  01:00:34.859 UTC                              │
+│      End:    01:00:37.905 UTC                              │
+│      Events:        100                                │
+│    [OrderEvents]
+│      Start:  01:00:34.925 UTC                              │
+│      End:    01:00:37.907 UTC                              │
+│      Events:        100                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 2: Embedded Events Outbox ───────────────────────────┐
+│  Start Time:       2026-04-22 01:00:38.440 UTC           │
+│  End Time:         2026-04-22 01:00:38.676 UTC           │
+│  Duration:              0.237 seconds                  │
+│  Total Operations:        100                          │
+│  Throughput:           422.40 ops/sec                  │
+│                                                             │
+│  Change Streams:                                             │
+│    [OrdersEmbedded]
+│      Start:  01:00:37.938 UTC                              │
+│      End:    01:00:40.678 UTC                              │
+│      Events:        100                                │
+└─────────────────────────────────────────────────────────────┘
+

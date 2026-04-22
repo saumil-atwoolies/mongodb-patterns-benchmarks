@@ -22,6 +22,9 @@ services:
       device_write_iops:
         - path: ${BLKIO_DEVICE:-/dev/sda}
           rate: ${IOPS_LIMIT:-3000}
+    # Resource limits — override via MONGO_MEMORY (e.g. "4g") and MONGO_CPUS (e.g. "4.0")
+    mem_limit: ${MONGO_MEMORY:-2g}
+    cpus: ${MONGO_CPUS:-2.0}
     healthcheck:
       test: >
         mongosh --quiet
@@ -39,6 +42,9 @@ services:
     depends_on:
       mongodb:
         condition: service_healthy
+    # Resource limits — override via BENCH_MEMORY and BENCH_CPUS
+    mem_limit: ${BENCH_MEMORY:-1g}
+    cpus: ${BENCH_CPUS:-2.0}
     volumes:
       - ./results:/app/results
     environment:
@@ -46,6 +52,13 @@ services:
       LOAD_SIZE: ${LOAD_SIZE:-1000}
       CONCURRENCY: ${CONCURRENCY:-5}
       BATCH_SIZE: ${BATCH_SIZE:-1}
+      # MongoDB container specs passed through for report
+      MONGO_IMAGE: "mongo:7"
+      MONGO_MEMORY: ${MONGO_MEMORY:-2g}
+      MONGO_CPUS: ${MONGO_CPUS:-2.0}
+      MONGO_IOPS_LIMIT: ${IOPS_LIMIT:-3000}
+      BENCH_MEMORY: ${BENCH_MEMORY:-1g}
+      BENCH_CPUS: ${BENCH_CPUS:-2.0}
 
 volumes:
   mongodb-data:

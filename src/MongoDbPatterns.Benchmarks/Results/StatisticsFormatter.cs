@@ -14,6 +14,25 @@ public static class StatisticsFormatter
         sb.AppendLine("╚══════════════════════════════════════════════════════════════╝");
         sb.AppendLine();
 
+        // Infrastructure section
+        var mongoImage = Environment.GetEnvironmentVariable("MONGO_IMAGE") ?? "N/A";
+        var mongoMemory = Environment.GetEnvironmentVariable("MONGO_MEMORY") ?? "N/A";
+        var mongoCpus = Environment.GetEnvironmentVariable("MONGO_CPUS") ?? "N/A";
+        var mongoIops = Environment.GetEnvironmentVariable("MONGO_IOPS_LIMIT") ?? "N/A";
+        var benchMemory = Environment.GetEnvironmentVariable("BENCH_MEMORY") ?? "N/A";
+        var benchCpus = Environment.GetEnvironmentVariable("BENCH_CPUS") ?? "N/A";
+
+        sb.AppendLine("┌─ Infrastructure ────────────────────────────────────────────┐");
+        sb.AppendLine($"│  MongoDB Image:      {mongoImage,-39}│");
+        sb.AppendLine($"│  MongoDB RAM:        {mongoMemory,-39}│");
+        sb.AppendLine($"│  MongoDB vCPUs:      {mongoCpus,-39}│");
+        sb.AppendLine($"│  MongoDB IOPS Limit: {mongoIops,-39}│");
+        sb.AppendLine($"│  Replica Set:        {"rs0 (single-node)",-39}│");
+        sb.AppendLine($"│  Bench RAM:          {benchMemory,-39}│");
+        sb.AppendLine($"│  Bench vCPUs:        {benchCpus,-39}│");
+        sb.AppendLine("└─────────────────────────────────────────────────────────────┘");
+        sb.AppendLine();
+
         // Configuration header
         sb.AppendLine("┌─ Configuration ─────────────────────────────────────────────┐");
         sb.AppendLine($"│  Load Size:   {config.LoadSize,10}                                │");
