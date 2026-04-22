@@ -5,6 +5,7 @@ public sealed record BenchmarkConfig
     public int LoadSize { get; init; } = 1000;
     public int Concurrency { get; init; } = 5;
     public int BatchSize { get; init; } = 1;
+    public bool ReportServerStats { get; init; } = true;
 
     public static BenchmarkConfig FromEnvironment()
     {
@@ -12,7 +13,8 @@ public sealed record BenchmarkConfig
         {
             LoadSize = GetEnvInt("LOAD_SIZE", 1000),
             Concurrency = GetEnvInt("CONCURRENCY", 5),
-            BatchSize = GetEnvInt("BATCH_SIZE", 1)
+            BatchSize = GetEnvInt("BATCH_SIZE", 1),
+            ReportServerStats = GetEnvBool("REPORT_SERVER_STATS", true)
         };
     }
 
@@ -20,5 +22,11 @@ public sealed record BenchmarkConfig
     {
         var value = Environment.GetEnvironmentVariable(name);
         return int.TryParse(value, out var result) ? result : defaultValue;
+    }
+
+    private static bool GetEnvBool(string name, bool defaultValue)
+    {
+        var value = Environment.GetEnvironmentVariable(name);
+        return bool.TryParse(value, out var result) ? result : defaultValue;
     }
 }

@@ -63,6 +63,7 @@ Stores aggregate state and domain events together in a single `OrdersEmbedded` d
 | `LOAD_SIZE` | `1000` | Number of aggregate operations per scenario |
 | `CONCURRENCY` | `5` | Maximum degree of parallelism |
 | `BATCH_SIZE` | `1` | Operations per batch |
+| `REPORT_SERVER_STATS` | `true` | Collect MongoDB server memory/CPU stats per scenario. Set to `false` when connecting to a server where the user lacks `serverStatus` privileges |
 | `IOPS_LIMIT` | `3000` | Read/write IOPS limit on MongoDB container |
 | `BLKIO_DEVICE` | `/dev/sda` | Block device path for IOPS throttling |
 | `CONNECTION_STRING` | *(from file)* | MongoDB connection string override |

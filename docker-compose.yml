@@ -59,6 +59,7 @@ services:
       MONGO_IOPS_LIMIT: ${IOPS_LIMIT:-3000}
       BENCH_MEMORY: ${BENCH_MEMORY:-1g}
       BENCH_CPUS: ${BENCH_CPUS:-2.0}
+      REPORT_SERVER_STATS: ${REPORT_SERVER_STATS:-true}
 
 volumes:
   mongodb-data:
