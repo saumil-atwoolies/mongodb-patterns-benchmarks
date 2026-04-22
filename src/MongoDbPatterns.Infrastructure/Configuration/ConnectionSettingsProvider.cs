@@ -20,9 +20,15 @@ public sealed class ConnectionSettingsProvider
 
     private readonly string _filePath;
 
+    /// <summary>
+    /// The detected solution root directory, or null when running outside a solution tree (e.g. Docker).
+    /// </summary>
+    public string? SolutionRoot { get; }
+
     public ConnectionSettingsProvider()
-        : this(Path.Combine(FindSolutionRoot(), DefaultFileName))
     {
+        SolutionRoot = FindSolutionRoot();
+        _filePath = Path.Combine(SolutionRoot ?? Directory.GetCurrentDirectory(), DefaultFileName);
     }
 
     public ConnectionSettingsProvider(string filePath)
@@ -30,7 +36,7 @@ public sealed class ConnectionSettingsProvider
         _filePath = filePath;
     }
 
-    private static string FindSolutionRoot()
+    private static string? FindSolutionRoot()
     {
         var dir = new DirectoryInfo(AppContext.BaseDirectory);
         while (dir is not null)
@@ -40,8 +46,8 @@ public sealed class ConnectionSettingsProvider
             dir = dir.Parent;
         }
 
-        // Fallback to current directory if no solution file found (e.g., Docker container)
-        return Directory.GetCurrentDirectory();
+        // No solution file found (e.g., Docker container)
+        return null;
     }
 
     public ConnectionSettings GetSettings()
