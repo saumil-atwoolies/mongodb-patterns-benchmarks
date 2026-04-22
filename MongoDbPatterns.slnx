@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/config/">
+    <File Path=".env" />
+    <File Path="connection-setting.local" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/MongoDbPatterns.Benchmarks/MongoDbPatterns.Benchmarks.csproj" />
     <Project Path="src/MongoDbPatterns.Domain/MongoDbPatterns.Domain.csproj" />

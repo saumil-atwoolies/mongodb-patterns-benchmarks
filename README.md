@@ -104,16 +104,38 @@ docker compose up mongodb -d
 
 ### Connection Settings
 
-Uncomment and edit values in the `.env` file at the repository root. Docker Compose reads it automatically:
+There are two config files at the repo root, each for a different way of running. Both are gitignored — your edits stay local.
+
+| File | Used by | When |
+|------|---------|------|
+| `.env` | Docker Compose | `docker compose up` |
+| `connection-setting.local` | The .NET app directly | Visual Studio (F5) / `dotnet run` |
+
+**They are independent — you only edit the one that matches how you're running.**
+
+#### Docker runs — `.env`
+
+Uncomment and edit values. Docker Compose reads this file automatically:
 
 ```env
 CONNECTION_STRING=mongodb+srv://user:pass@cluster.mongodb.net/?retryWrites=true
 DATABASE_NAME=MyBenchmarks
 ```
 
-If omitted, the default (`mongodb://mongodb:27017/?replicaSet=rs0`) targets the local Docker MongoDB container.
+If omitted, the default (`mongodb://mongodb:27017/?replicaSet=rs0`) targets the Docker MongoDB container.
 
-For local `dotnet run` without Docker, the same `CONNECTION_STRING` environment variable works. If unset, a `connection-setting.local` file is auto-created on first run with defaults for the Docker-hosted MongoDB on port 27018.
+#### Local runs — `connection-setting.local`
+
+Auto-created on first run with defaults. Edit the JSON to point at your own MongoDB:
+
+```json
+{
+  "ConnectionString": "mongodb://localhost:27018/?directConnection=true",
+  "DatabaseName": "MongoDbPatterns"
+}
+```
+
+This file is ignored when the `CONNECTION_STRING` environment variable is set.
 
 ## Extending
 
