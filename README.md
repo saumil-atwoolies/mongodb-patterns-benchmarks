@@ -8,11 +8,21 @@ A .NET 10 console application that benchmarks MongoDB outbox pattern variants fo
 
 ## Quick Start
 
+### Option 1 — Run in background
+
 ```bash
 docker compose build && docker compose up
 ```
 
-This builds the application (including running all tests), starts a MongoDB 7 replica set, and executes benchmarks. Results are printed to stdout.
+This builds the application (including running all tests), starts a MongoDB 7 replica set, and executes benchmarks. Results are printed to stdout. MongoDB keeps running after the benchmarks finish.
+
+### Option 2 — Run and stop on exit
+
+```bash
+docker compose up --build --abort-on-container-exit
+```
+
+Same as Option 1 but tears down all containers as soon as the benchmarks container exits. Useful for CI or one-shot runs. Reports are saved to `./results/`.
 
 ## Architecture Overview
 
