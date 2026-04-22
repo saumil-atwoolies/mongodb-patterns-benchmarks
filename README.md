@@ -94,7 +94,31 @@ docker compose up mongodb -d
 
 ### Connection Settings
 
-On first run, a `connection-setting.local` file is created in the working directory with default connection parameters. Set the `CONNECTION_STRING` environment variable to override.
+There are two ways to use a custom MongoDB connection string, depending on how you run the benchmarks. Both use local files that are excluded from git.
+
+#### Docker runs — `.env` file
+
+Create a `.env` file in the repository root. Docker Compose reads it automatically:
+
+```env
+CONNECTION_STRING=mongodb+srv://user:pass@cluster.mongodb.net/?retryWrites=true
+DATABASE_NAME=MyBenchmarks
+```
+
+If omitted, the default (`mongodb://mongodb:27017/?replicaSet=rs0`) targets the local Docker MongoDB container.
+
+#### Local runs — `connection-setting.local` file
+
+On first run, a `connection-setting.local` JSON file is created in the working directory:
+
+```json
+{
+  "ConnectionString": "mongodb://localhost:27018/?directConnection=true",
+  "DatabaseName": "MongoDbPatterns"
+}
+```
+
+Edit this file to point at your own MongoDB server. Alternatively, set the `CONNECTION_STRING` environment variable to override both the file and the defaults.
 
 ## Extending
 

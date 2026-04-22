@@ -48,7 +48,7 @@ services:
     volumes:
       - ./results:/app/results
     environment:
-      CONNECTION_STRING: "mongodb://mongodb:27017/?replicaSet=rs0"
+      CONNECTION_STRING: "${CONNECTION_STRING:-mongodb://mongodb:27017/?replicaSet=rs0}"
       LOAD_SIZE: ${LOAD_SIZE:-10000}
       CONCURRENCY: ${CONCURRENCY:-20}
       BATCH_SIZE: ${BATCH_SIZE:-1}
