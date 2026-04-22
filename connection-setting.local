@@ -1,4 +1,0 @@
-{
-  "ConnectionString": "mongodb://localhost:27018/?directConnection=true",
-  "DatabaseName": "MongoDbPatterns"
-}
