@@ -29,15 +29,10 @@ public sealed class TwoPhaseCommitScenario : IBenchmarkScenario
         if (!existingNames.Contains(TwoPhaseCommitOrderRepository.OrderEventsCollectionName))
             await db.CreateCollectionAsync(TwoPhaseCommitOrderRepository.OrderEventsCollectionName, cancellationToken: ct);
 
-        var ordersWatcher = new ChangeStreamWatcher(
-            _context.Database.GetCollection<BsonDocument>(TwoPhaseCommitOrderRepository.OrdersCollectionName),
-            TwoPhaseCommitOrderRepository.OrdersCollectionName);
-
         var eventsWatcher = new ChangeStreamWatcher(
             _context.Database.GetCollection<BsonDocument>(TwoPhaseCommitOrderRepository.OrderEventsCollectionName),
             TwoPhaseCommitOrderRepository.OrderEventsCollectionName);
 
-        await ordersWatcher.StartAsync(ct);
         await eventsWatcher.StartAsync(ct);
 
         // Allow watchers to establish cursors
@@ -75,7 +70,6 @@ public sealed class TwoPhaseCommitScenario : IBenchmarkScenario
         // Allow change stream to drain
         await Task.Delay(2000, ct);
 
-        var ordersResult = await ordersWatcher.StopAsync();
         var eventsResult = await eventsWatcher.StopAsync();
 
         return new ScenarioResult
@@ -84,7 +78,7 @@ public sealed class TwoPhaseCommitScenario : IBenchmarkScenario
             StartTime = startTime,
             EndTime = endTime,
             TotalOperations = config.LoadSize * 2, // create + update
-            ChangeStreamResults = [ordersResult, eventsResult]
+            ChangeStreamResults = [eventsResult]
         };
     }
 }

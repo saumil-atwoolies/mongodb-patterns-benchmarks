@@ -1,0 +1,48 @@
+╔══════════════════════════════════════════════════════════════╗
+║           MongoDB Patterns & Benchmarks — Results           ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌─ Infrastructure ────────────────────────────────────────────┐
+│  MongoDB Image:      mongo:7                                │
+│  MongoDB RAM:        2g                                     │
+│  MongoDB vCPUs:      2.0                                    │
+│  MongoDB IOPS Limit: 3000                                   │
+│  Replica Set:        rs0 (single-node)                      │
+│  Bench RAM:          1g                                     │
+│  Bench vCPUs:        2.0                                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Configuration ─────────────────────────────────────────────┐
+│  Load Size:        10000                                │
+│  Concurrency:         20                                │
+│  Batch Size:           1                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 1: Two-Phase Commit Outbox ──────────────────────────┐
+│  Start Time:       2026-04-22 04:47:03.533 UTC           │
+│  End Time:         2026-04-22 04:47:32.035 UTC           │
+│  Duration:             28.502 seconds                  │
+│  Total Operations:      20000                          │
+│  Throughput:           701.71 ops/sec                  │
+│                                                             │
+│  Change Streams:                                             │
+│    [OrderEvents]
+│      Start:  04:47:02.973 UTC                              │
+│      End:    04:47:17.110 UTC                              │
+│      Events:      20000                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 2: Embedded Events Outbox ───────────────────────────┐
+│  Start Time:       2026-04-22 04:47:17.614 UTC           │
+│  End Time:         2026-04-22 04:47:26.359 UTC           │
+│  Duration:              8.745 seconds                  │
+│  Total Operations:      20000                          │
+│  Throughput:          2287.06 ops/sec                  │
+│                                                             │
+│  Change Streams:                                             │
+│    [OrdersEmbedded]
+│      Start:  04:47:17.113 UTC                              │
+│      End:    04:47:28.361 UTC                              │
+│      Events:      20000                                │
+└─────────────────────────────────────────────────────────────┘
+
