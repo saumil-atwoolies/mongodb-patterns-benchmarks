@@ -1,0 +1,60 @@
+╔══════════════════════════════════════════════════════════════╗
+║           MongoDB Patterns & Benchmarks — Results           ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌─ Infrastructure ────────────────────────────────────────────┐
+│  MongoDB Image:      mongo:7                                │
+│  MongoDB RAM:        2g                                     │
+│  MongoDB vCPUs:      2.0                                    │
+│  MongoDB IOPS Limit: 3000                                   │
+│  Replica Set:        rs0 (single-node)                      │
+│  Bench RAM:          1g                                     │
+│  Bench vCPUs:        2.0                                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Configuration ─────────────────────────────────────────────┐
+│  Load Size:        10000                                │
+│  Concurrency:         20                                │
+│  Batch Size:           1                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 1: Two-Phase Commit Outbox ──────────────────────────┐
+│  Start Time:       2026-04-22 07:07:59.377 UTC           │
+│  End Time:         2026-04-22 07:08:11.226 UTC           │
+│  Duration:             11.850 seconds                  │
+│  Total Operations:      20000                          │
+│  Throughput:          1687.83 ops/sec                  │
+│                                                             │
+│  MongoDB Server Stats:                                       │
+│    Avg Memory (RSS):    347.0 MB                        │
+│    Peak Memory (RSS):   354.0 MB                        │
+│    Avg CPU:             172.0 %                         │
+│    Samples:                25                          │
+│                                                             │
+│  Change Streams:                                             │
+│    [OrderEvents]
+│      Start:  07:07:58.793 UTC                              │
+│      End:    07:08:30.032 UTC                              │
+│      Events:      20000                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 2: Embedded Events Outbox ───────────────────────────┐
+│  Start Time:       2026-04-22 07:08:13.755 UTC           │
+│  End Time:         2026-04-22 07:08:22.786 UTC           │
+│  Duration:              9.030 seconds                  │
+│  Total Operations:      20000                          │
+│  Throughput:          2214.80 ops/sec                  │
+│                                                             │
+│  MongoDB Server Stats:                                       │
+│    Avg Memory (RSS):    364.1 MB                        │
+│    Peak Memory (RSS):   378.0 MB                        │
+│    Avg CPU:             143.0 %                         │
+│    Samples:                19                          │
+│                                                             │
+│  Change Streams:                                             │
+│    [OrdersEmbedded]
+│      Start:  07:08:30.036 UTC                              │
+│      End:    07:08:24.779 UTC                              │
+│      Events:      20000                                │
+└─────────────────────────────────────────────────────────────┘
+
