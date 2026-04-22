@@ -24,6 +24,16 @@ docker compose up --build --abort-on-container-exit
 
 Same as Option 1 but tears down all containers as soon as the benchmarks container exits. Useful for CI or one-shot runs. Reports are saved to `./results/`.
 
+### Teardown
+
+Remove all containers, networks, and volumes created by this project:
+
+```bash
+docker compose down -v
+```
+
+This stops and removes both containers, the Docker network, and the `mongodb-data` volume. Run this for a clean slate before rebuilding or to free disk space.
+
 ## Architecture Overview
 
 ```
