@@ -1,0 +1,42 @@
+╔══════════════════════════════════════════════════════════════╗
+║           MongoDB Patterns & Benchmarks — Results           ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌─ Configuration ─────────────────────────────────────────────┐
+│  Load Size:           50                                │
+│  Concurrency:          2                                │
+│  Batch Size:           1                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 1: Two-Phase Commit Outbox ──────────────────────────┐
+│  Start Time:       2026-04-22 00:48:04.064 UTC           │
+│  End Time:         2026-04-22 00:48:04.483 UTC           │
+│  Duration:              0.419 seconds                  │
+│  Total Operations:        100                          │
+│  Throughput:           238.38 ops/sec                  │
+│                                                             │
+│  Change Streams:                                             │
+│    [Orders]
+│      Start:  00:48:03.500 UTC                              │
+│      End:    00:48:06.499 UTC                              │
+│      Events:        100                                │
+│    [OrderEvents]
+│      Start:  00:48:03.569 UTC                              │
+│      End:    00:48:06.500 UTC                              │
+│      Events:        100                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─ Case 2: Embedded Events Outbox ───────────────────────────┐
+│  Start Time:       2026-04-22 00:48:07.032 UTC           │
+│  End Time:         2026-04-22 00:48:07.271 UTC           │
+│  Duration:              0.239 seconds                  │
+│  Total Operations:        100                          │
+│  Throughput:           419.27 ops/sec                  │
+│                                                             │
+│  Change Streams:                                             │
+│    [OrdersEmbedded]
+│      Start:  00:48:06.531 UTC                              │
+│      End:    00:48:09.287 UTC                              │
+│      Events:        100                                │
+└─────────────────────────────────────────────────────────────┘
+
