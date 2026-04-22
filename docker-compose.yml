@@ -49,8 +49,8 @@ services:
       - ./results:/app/results
     environment:
       CONNECTION_STRING: "mongodb://mongodb:27017/?replicaSet=rs0"
-      LOAD_SIZE: ${LOAD_SIZE:-1000}
-      CONCURRENCY: ${CONCURRENCY:-5}
+      LOAD_SIZE: ${LOAD_SIZE:-10000}
+      CONCURRENCY: ${CONCURRENCY:-20}
       BATCH_SIZE: ${BATCH_SIZE:-1}
       # MongoDB container specs passed through for report
       MONGO_IMAGE: "mongo:7"
