@@ -110,7 +110,7 @@ There are two config files at the repo root, each for a different way of running
 | File | Used by | When |
 |------|---------|------|
 | `.env` | Docker Compose | `docker compose up` |
-| `connection-setting.local` | The .NET app directly | Visual Studio (F5) / `dotnet run` |
+| `settings.local.json` | The .NET app directly | Visual Studio (F5) / `dotnet run` |
 
 **They are independent — you only edit the one that matches how you're running.**
 
@@ -125,14 +125,18 @@ DATABASE_NAME=MyBenchmarks
 
 If omitted, the default (`mongodb://mongodb:27017/?replicaSet=rs0`) targets the Docker MongoDB container.
 
-#### Local runs — `connection-setting.local`
+#### Local runs — `settings.local.json`
 
-Auto-created on first run with defaults. Edit the JSON to point at your own MongoDB:
+Auto-created on first run with defaults. Edit the JSON to point at your own MongoDB and configure benchmark parameters:
 
 ```json
 {
   "ConnectionString": "mongodb://localhost:27018/?directConnection=true",
-  "DatabaseName": "MongoDbPatterns"
+  "DatabaseName": "MongoDbPatterns",
+  "LoadSize": 1000,
+  "Concurrency": 5,
+  "BatchSize": 1,
+  "ReportServerStats": true
 }
 ```
 

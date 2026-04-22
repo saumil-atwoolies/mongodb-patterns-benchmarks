@@ -1,3 +1,5 @@
+using MongoDbPatterns.Infrastructure.Configuration;
+
 namespace MongoDbPatterns.Benchmarks.Configuration;
 
 public sealed record BenchmarkConfig
@@ -7,14 +9,19 @@ public sealed record BenchmarkConfig
     public int BatchSize { get; init; } = 1;
     public bool ReportServerStats { get; init; } = true;
 
-    public static BenchmarkConfig FromEnvironment()
+    /// <summary>
+    /// Creates config from environment variables, using local settings as defaults
+    /// when env vars are not set (Visual Studio / dotnet run).
+    /// </summary>
+    public static BenchmarkConfig FromEnvironment(LocalSettings? localSettings = null)
     {
+        var defaults = localSettings ?? new LocalSettings();
         return new BenchmarkConfig
         {
-            LoadSize = GetEnvInt("LOAD_SIZE", 1000),
-            Concurrency = GetEnvInt("CONCURRENCY", 5),
-            BatchSize = GetEnvInt("BATCH_SIZE", 1),
-            ReportServerStats = GetEnvBool("REPORT_SERVER_STATS", true)
+            LoadSize = GetEnvInt("LOAD_SIZE", defaults.LoadSize),
+            Concurrency = GetEnvInt("CONCURRENCY", defaults.Concurrency),
+            BatchSize = GetEnvInt("BATCH_SIZE", defaults.BatchSize),
+            ReportServerStats = GetEnvBool("REPORT_SERVER_STATS", defaults.ReportServerStats)
         };
     }
 

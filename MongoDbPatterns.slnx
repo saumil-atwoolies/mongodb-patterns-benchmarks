@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/config/">
     <File Path=".env" />
-    <File Path="connection-setting.local" />
+    <File Path="settings.local.json" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/MongoDbPatterns.Benchmarks/MongoDbPatterns.Benchmarks.csproj" />

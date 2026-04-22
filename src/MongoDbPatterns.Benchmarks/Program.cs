@@ -5,14 +5,19 @@ using MongoDbPatterns.Benchmarks.Scenarios;
 using MongoDbPatterns.Infrastructure.Configuration;
 using MongoDbPatterns.Infrastructure.Persistence;
 
-var config = BenchmarkConfig.FromEnvironment();
+var settingsProvider = new ConnectionSettingsProvider();
+var localSettings = settingsProvider.GetLocalSettings();
+var config = BenchmarkConfig.FromEnvironment(localSettings);
 Console.WriteLine("=== MongoDB Patterns & Benchmarks ===");
 Console.WriteLine($"Load Size: {config.LoadSize} | Concurrency: {config.Concurrency} | Batch Size: {config.BatchSize}");
 Console.WriteLine();
 
-var settingsProvider = new ConnectionSettingsProvider();
-var settings = settingsProvider.GetSettings();
-var context = new MongoDbContext(settings);
+var connectionSettings = new ConnectionSettings
+{
+    ConnectionString = localSettings.ConnectionString,
+    DatabaseName = localSettings.DatabaseName
+};
+var context = new MongoDbContext(connectionSettings);
 
 IBenchmarkScenario[] scenarios =
 [

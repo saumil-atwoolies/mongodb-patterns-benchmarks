@@ -4,13 +4,9 @@ namespace MongoDbPatterns.Infrastructure.Configuration;
 
 public sealed class ConnectionSettingsProvider
 {
-    private const string DefaultFileName = "connection-setting.local";
+    private const string DefaultFileName = "settings.local.json";
 
-    private static readonly ConnectionSettings DefaultSettings = new()
-    {
-        ConnectionString = "mongodb://localhost:27018/?directConnection=true",
-        DatabaseName = "MongoDbPatterns"
-    };
+    private static readonly LocalSettings DefaultLocalSettings = new();
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -50,27 +46,51 @@ public sealed class ConnectionSettingsProvider
         return null;
     }
 
-    public ConnectionSettings GetSettings()
+    /// <summary>
+    /// Returns all local settings from the JSON file (or defaults).
+    /// Environment variables for CONNECTION_STRING / DATABASE_NAME override the file values.
+    /// </summary>
+    public LocalSettings GetLocalSettings()
     {
+        var local = ReadOrCreateFile();
+
         var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
         if (!string.IsNullOrWhiteSpace(envConnectionString))
         {
-            return new ConnectionSettings
+            local = local with
             {
                 ConnectionString = envConnectionString,
-                DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME") ?? DefaultSettings.DatabaseName
+                DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME") ?? local.DatabaseName
             };
         }
 
+        return local;
+    }
+
+    /// <summary>
+    /// Returns connection settings only. Kept for backward compatibility.
+    /// </summary>
+    public ConnectionSettings GetSettings()
+    {
+        var local = GetLocalSettings();
+        return new ConnectionSettings
+        {
+            ConnectionString = local.ConnectionString,
+            DatabaseName = local.DatabaseName
+        };
+    }
+
+    private LocalSettings ReadOrCreateFile()
+    {
         if (!File.Exists(_filePath))
         {
-            var json = JsonSerializer.Serialize(DefaultSettings, JsonOptions);
+            var json = JsonSerializer.Serialize(DefaultLocalSettings, JsonOptions);
             File.WriteAllText(_filePath, json);
-            return DefaultSettings;
+            return DefaultLocalSettings;
         }
 
         var content = File.ReadAllText(_filePath);
-        return JsonSerializer.Deserialize<ConnectionSettings>(content, JsonOptions)
-               ?? throw new InvalidOperationException($"Failed to deserialize connection settings from '{_filePath}'.");
+        return JsonSerializer.Deserialize<LocalSettings>(content, JsonOptions)
+               ?? throw new InvalidOperationException($"Failed to deserialize settings from '{_filePath}'.");
     }
 }

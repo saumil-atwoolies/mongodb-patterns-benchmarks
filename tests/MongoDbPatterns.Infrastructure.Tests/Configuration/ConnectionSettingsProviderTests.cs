@@ -12,7 +12,7 @@ public class ConnectionSettingsProviderTests : IDisposable
     {
         _testDir = Path.Combine(Path.GetTempPath(), $"MongoDbPatternsTests_{Guid.NewGuid():N}");
         Directory.CreateDirectory(_testDir);
-        _filePath = Path.Combine(_testDir, "connection-setting.local");
+        _filePath = Path.Combine(_testDir, "settings.local.json");
     }
 
     public void Dispose()

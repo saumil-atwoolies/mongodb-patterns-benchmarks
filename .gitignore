@@ -47,6 +47,7 @@ bld/
 
 ## Local configuration files (connection strings, secrets)
 *.local
+*.local.json
 .env
 
 ## OS files
