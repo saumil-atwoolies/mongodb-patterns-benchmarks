@@ -33,10 +33,14 @@ public sealed class TwoPhaseCommitScenario : IBenchmarkScenario
             _context.Database.GetCollection<BsonDocument>(TwoPhaseCommitOrderRepository.OrderEventsCollectionName),
             TwoPhaseCommitOrderRepository.OrderEventsCollectionName);
 
+        var statsCollector = new ServerStatsCollector(_context.Database);
+
         await eventsWatcher.StartAsync(ct);
 
         // Allow watchers to establish cursors
         await Task.Delay(500, ct);
+
+        await statsCollector.StartAsync(ct);
 
         var startTime = DateTime.UtcNow;
         var repo = new TwoPhaseCommitOrderRepository(_context);
@@ -67,6 +71,8 @@ public sealed class TwoPhaseCommitScenario : IBenchmarkScenario
 
         var endTime = DateTime.UtcNow;
 
+        var serverStats = await statsCollector.StopAsync();
+
         // Allow change stream to drain
         await Task.Delay(2000, ct);
 
@@ -78,7 +84,8 @@ public sealed class TwoPhaseCommitScenario : IBenchmarkScenario
             StartTime = startTime,
             EndTime = endTime,
             TotalOperations = config.LoadSize * 2, // create + update
-            ChangeStreamResults = [eventsResult]
+            ChangeStreamResults = [eventsResult],
+            ServerStats = serverStats
         };
     }
 }

@@ -50,6 +50,16 @@ public static class StatisticsFormatter
             sb.AppendLine($"│  Total Operations: {result.TotalOperations,10}                          │");
             sb.AppendLine($"│  Throughput:       {result.ThroughputOpsPerSec,10:F2} ops/sec                  │");
 
+            if (result.ServerStats != null)
+            {
+                sb.AppendLine("│                                                             │");
+                sb.AppendLine("│  MongoDB Server Stats:                                       │");
+                sb.AppendLine($"│    Avg Memory (RSS): {result.ServerStats.AverageResidentMemoryMb,8:F1} MB                        │");
+                sb.AppendLine($"│    Peak Memory (RSS):{result.ServerStats.PeakResidentMemoryMb,8:F1} MB                        │");
+                sb.AppendLine($"│    Avg CPU:          {result.ServerStats.AverageCpuPercent,8:F1} %                         │");
+                sb.AppendLine($"│    Samples:          {result.ServerStats.SampleCount,8}                          │");
+            }
+
             if (result.ChangeStreamResults.Count > 0)
             {
                 sb.AppendLine("│                                                             │");

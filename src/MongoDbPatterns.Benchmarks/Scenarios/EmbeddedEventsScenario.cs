@@ -31,10 +31,14 @@ public sealed class EmbeddedEventsScenario : IBenchmarkScenario
             _context.Database.GetCollection<BsonDocument>(EmbeddedEventsOrderRepository.CollectionName),
             EmbeddedEventsOrderRepository.CollectionName);
 
+        var statsCollector = new ServerStatsCollector(_context.Database);
+
         await watcher.StartAsync(ct);
 
         // Allow watcher to establish cursor
         await Task.Delay(500, ct);
+
+        await statsCollector.StartAsync(ct);
 
         var startTime = DateTime.UtcNow;
         var repo = new EmbeddedEventsOrderRepository(_context);
@@ -65,6 +69,8 @@ public sealed class EmbeddedEventsScenario : IBenchmarkScenario
 
         var endTime = DateTime.UtcNow;
 
+        var serverStats = await statsCollector.StopAsync();
+
         // Allow change stream to drain
         await Task.Delay(2000, ct);
 
@@ -76,7 +82,8 @@ public sealed class EmbeddedEventsScenario : IBenchmarkScenario
             StartTime = startTime,
             EndTime = endTime,
             TotalOperations = config.LoadSize * 2, // create + update
-            ChangeStreamResults = [watcherResult]
+            ChangeStreamResults = [watcherResult],
+            ServerStats = serverStats
         };
     }
 }

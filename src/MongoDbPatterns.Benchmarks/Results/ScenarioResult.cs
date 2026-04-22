@@ -11,4 +11,5 @@ public sealed record ScenarioResult
     public required int TotalOperations { get; init; }
     public double ThroughputOpsPerSec => TotalOperations / Duration.TotalSeconds;
     public required List<ChangeStreamResult> ChangeStreamResults { get; init; }
+    public ServerStatsResult? ServerStats { get; init; }
 }
